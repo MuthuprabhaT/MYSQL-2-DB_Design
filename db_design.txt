@@ -1,0 +1,60 @@
+DB Desingn for Zen class programme
+
+Table users{
+  id int [primary key]
+  name varchar
+  email varchar
+  batch varchar
+}
+
+Table roadmap{
+  roadmap_id int [primary key]
+  roadmap_number int
+  users_id int
+}
+
+Table attendance{
+  attendance_id int [primary key]
+  users_id int 
+  status varchar
+  date timestamp
+}
+
+Table topics{
+  topic_id int [primary key]
+  topic_name varchar
+  contents text
+  roadmap_id int
+}
+
+Table tasks{
+  task_id int [primary key]
+  users_id int
+  task_name varchar
+  submission_date timestamp
+  score int
+  topic_id int
+}
+
+Table leaderboard{
+  leaderboard_id int [primary key]
+  users_id int 
+  rank int
+  name varchar
+  task_score int
+  task_id int
+}
+
+Ref: topics.roadmap_id < roadmap.roadmap_id
+
+Ref: topics.topic_id > tasks.topic_id
+
+Ref: users.id > attendance.users_id
+
+Ref: users.id > roadmap.users_id
+
+Ref: users.id > leaderboard.users_id
+
+Ref: tasks.task_id > leaderboard.task_id
+
+
